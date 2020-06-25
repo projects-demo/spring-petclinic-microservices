@@ -52,4 +52,10 @@ class VetResource {
         return "vet-service";
     }
 
+	@RequestMapping(value = "/recommended")
+	@ResponseBody
+	public String readingList() {
+		return "NOT Circuit breaker...";
+	}
+
 }
