@@ -1,4 +1,4 @@
-﻿server:
+server:
   port: 8761
 logging.level.org.springframework: DEBUG
 
@@ -17,8 +17,8 @@ eureka:
     
  
 ---
-﻿server:
-  port: 8761
+server:
+  port: 8080
 logging.level.org.springframework: DEBUG
 
 spring:
@@ -28,13 +28,8 @@ spring:
     
 eureka:
   instance:
-    hostname: localhost
+    hostname: 35.224.211.161
   # standalone mode
   client:
     registerWithEureka: false
     fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
-
-
