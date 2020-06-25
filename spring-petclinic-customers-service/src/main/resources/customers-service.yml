@@ -1,0 +1,31 @@
+server:
+  port: 8081
+logging.level.org.springframework: DEBUG
+
+spring.jpa.hibernate.ddl-auto: none
+
+spring:
+  profiles: default
+  application:
+     name: customers-service  # Service registers under this name
+  datasource:
+     schema: classpath*:db/hsqldb/schema.sql
+     data: classpath*:db/hsqldb/data.sql
+
+eureka:
+  instance:
+    # enable to register multiple app instances with a random server port
+    instance-id: ${spring.application.name}:${random.uuid}
+
+---
+spring:
+  profiles: docker
+  application:
+     name: customers-service  # Service registers under this name
+  
+#  zipkin:
+#    baseUrl: http://tracing-server:9411
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://34.67.251.81:8082/eureka/

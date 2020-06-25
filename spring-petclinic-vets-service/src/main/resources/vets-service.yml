@@ -1,0 +1,42 @@
+﻿vets:
+  cache:
+    ttl: 60
+    heap-size: 100
+server:
+  port: 8083
+
+spring.jpa.hibernate.ddl-auto: none
+
+logging.level.org.springframework: DEBUG
+
+spring:
+  profiles: default
+  application:
+     name: vets-service  # Service registers under this name
+  datasource:
+     schema: classpath*:db/hsqldb/schema.sql
+     data: classpath*:db/hsqldb/data.sql
+     
+
+eureka:
+  instance:
+    # enable to register multiple app instances with a random server port
+    instance-id: ${spring.application.name}:${random.uuid}
+
+---
+spring.jpa.hibernate.ddl-auto: none
+
+spring:
+  profiles: docker
+  application:
+     name: vets-service  # Service registers under this name
+  datasource:
+     schema: classpath*:db/hsqldb/schema.sql
+     data: classpath*:db/hsqldb/data.sql
+  
+#  zipkin:
+#    baseUrl: http://tracing-server:9411
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://34.67.251.81:8081/eureka/
