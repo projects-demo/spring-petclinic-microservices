@@ -17,8 +17,6 @@ eureka:
     
  
 ---
-server:
-  port: 8080
 logging.level.org.springframework: DEBUG
 
 spring:
@@ -33,3 +31,6 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://35.224.211.161:8080/eureka/
+    

@@ -30,7 +30,7 @@ public class BookService {
 			} catch (Exception e2) {
 
 				try {
-					URI uri = URI.create("http://34.69.108.236:8080/vets/recommended");
+					URI uri = URI.create("http://35.184.26.197:8080/vets/recommended");
 					System.err.println("uri--->" + uri);
 					System.out.println("2Exception Occurred.. now fallback method will be called..." + e2);
 					return this.restTemplate.getForObject(uri, String.class) + "2 direct call to VETS-SERVICE";

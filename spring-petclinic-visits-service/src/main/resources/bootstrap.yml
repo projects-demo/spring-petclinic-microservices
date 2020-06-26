@@ -31,7 +31,11 @@ spring:
   
 #  zipkin:
 #    baseUrl: http://tracing-server:9411
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://35.224.211.161:8080/eureka/
+    registerWithEureka: true
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}  
