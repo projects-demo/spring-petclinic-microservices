@@ -18,12 +18,11 @@ package org.springframework.samples.petclinic.visits;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-/**
- * @author Maciej Szarlinski
- */
-@EnableDiscoveryClient
+
 @SpringBootApplication
+@EnableEurekaClient
 public class VisitsServiceApplication {
 
     public static void main(String[] args) {
