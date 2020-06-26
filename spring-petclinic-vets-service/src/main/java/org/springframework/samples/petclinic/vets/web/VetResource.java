@@ -55,7 +55,7 @@ class VetResource {
 	@RequestMapping(value = "/recommended")
 	@ResponseBody
 	public String readingList() {
-		return "NOT Circuit breaker...";
+		return "NOT Circuit breaker... response from vet-service";
 	}
 
 }

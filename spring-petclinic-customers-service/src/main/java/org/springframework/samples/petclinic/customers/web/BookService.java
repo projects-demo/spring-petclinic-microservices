@@ -17,19 +17,15 @@ public class BookService {
 
 	@HystrixCommand(fallbackMethod = "reliable")
 	public String readingList() {
-		// URI uri = URI.create("http://localhost:8082/recommended"); //wrong URL: Will
-		// invoke circuit breaker fallback method
-		// URI uri = URI.create("http://localhost:2222/recommended"); // correct URL ...
-		// implemented in Accounts Microservice
 
 		try {
-			return this.restTemplate.getForObject("http://VETS-SERVICE" + "/vets/recommended", String.class);
+			return this.restTemplate.getForObject("http://VETS-SERVICE" + "/vets/recommended", String.class) + "0 via discovery";
 		} catch (Exception e) {
 
 			try {
 				System.out.println("1Exception Occurred.. now fallback method will be called..." + e);
 
-				return this.restTemplate.getForObject("http://vets-service" + "/vets/recommended", String.class);
+				return this.restTemplate.getForObject("http://vets-service" + "/vets/recommended", String.class)+ "1 via discovery";
 
 			} catch (Exception e2) {
 
@@ -37,13 +33,13 @@ public class BookService {
 					URI uri = URI.create("http://34.69.108.236:8080/vets/recommended");
 					System.err.println("uri--->" + uri);
 					System.out.println("2Exception Occurred.. now fallback method will be called..." + e2);
-					return this.restTemplate.getForObject(uri, String.class);
+					return this.restTemplate.getForObject(uri, String.class) + "2 direct call to VETS-SERVICE";
 				} catch (Exception e3) {
 					System.out.println("3Exception Occurred.. now fallback method will be called..." + e3);
 				}
 
 			}
-			return "Saurabh";
+			return "Circuit is broken " + "3 response from customer-service";
 		}
 	}
 
